@@ -33,3 +33,14 @@
     animation: fadeOut;
     animation-duration: 1s;
 }
+
+.status{
+    height: 30px;
+    width: 80%;
+    background-color: white;
+}
+
+.statusBar{
+    height: 100%;
+    background-color: red;
+}
