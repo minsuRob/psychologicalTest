@@ -1,8 +1,9 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
+const result = document.querySelector("#result");
 
 const endPoint = 12;
-
+const select = [];
 
 function goResult(){
   qna.style.WebkitAnimation = "fadeOut 1s";
@@ -17,7 +18,7 @@ function goResult(){
     setResult();
 }
 
-function addAnswer(answerText, qIdx){
+function addAnswer(answerText, qIdx, idx){
   var a = document.querySelector('.answerBox');
   var answer = document.createElement('button');
   answer.classList.add('answerList');
@@ -37,6 +38,7 @@ function addAnswer(answerText, qIdx){
       children[i].style.animation = "fadeOut 0.5s";
     }
     setTimeout(() => {
+      select[qIdx]= idx;
       for(let i = 0; i < children.length; i++){
         children[i].style.display = 'none';
       }
@@ -46,10 +48,14 @@ function addAnswer(answerText, qIdx){
 }
 
 function goNext(qIdx){
+  if(qIdx + 1 === endPoint) {
+    goResult();
+    return;
+  }
   var q = document.querySelector('.qBox');
   q.innerHTML = qnaList[qIdx].q;
   for(let i in qnaList[qIdx].a){
-    addAnswer(qnaList[qIdx].a[i].answer, qIdx);
+    addAnswer(qnaList[qIdx].a[i].answer, qIdx, i);
   }
   var status = document.querySelector('.statusBar');
   status.style.width = (100/endPoint) * (qIdx+1) + '%';
