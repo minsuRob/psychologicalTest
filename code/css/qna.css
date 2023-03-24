@@ -23,3 +23,13 @@
     background-color: pink;
     color: whitesmoke;
 }
+
+.fadeIn{
+    animation: fadeIn;
+    animation-duration: 1s;
+}
+
+.fadeOut{
+    animation: fadeOut;
+    animation-duration: 1s;
+}
