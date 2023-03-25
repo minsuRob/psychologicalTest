@@ -5,16 +5,27 @@ const result = document.querySelector("#result");
 const endPoint = 12;
 const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-// function setResult() {
-//   let point = calResult();
-//   const resultName = document.
-// }
-
-function calResult() {
+function calResult(){
   console.log(select);
   var result = select.indexOf(Math.max(...select));
-  console.log(result);
   return result;
+}
+
+function setResult(){
+  let point = calResult();
+  const resultName = document.querySelector('.resultname');
+  resultName.innerHTML = infoList[point].name;
+
+  var resultImg = document.createElement('img');
+  const imgDiv = document.querySelector('#resultImg');
+  var imgURL = 'img/image-' + point + '.png';
+  resultImg.src = imgURL;
+  resultImg.alt = point;
+  resultImg.classList.add('img-fluid');
+  imgDiv.appendChild(resultImg);
+
+  const resultDesc = document.querySelector('.resultDesc');
+  resultDesc.innerHTML = infoList[point].desc;
 }
 
 function goResult(){
@@ -27,7 +38,7 @@ function goResult(){
       qna.style.display = "none";
       result.style.display = "block"
     }, 450)})
-    calResult();
+    setResult();
 }
 
 function addAnswer(answerText, qIdx, idx){
@@ -64,10 +75,11 @@ function addAnswer(answerText, qIdx, idx){
 }
 
 function goNext(qIdx){
-  if(qIdx === endPoint) {
+  if(qIdx === endPoint){
     goResult();
     return;
   }
+
   var q = document.querySelector('.qBox');
   q.innerHTML = qnaList[qIdx].q;
   for(let i in qnaList[qIdx].a){
