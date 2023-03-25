@@ -15,7 +15,7 @@ function goResult(){
       qna.style.display = "none";
       result.style.display = "block"
     }, 450)})
-    setResult();
+    calResult();
 }
 
 function addAnswer(answerText, qIdx, idx){
@@ -48,7 +48,7 @@ function addAnswer(answerText, qIdx, idx){
 }
 
 function goNext(qIdx){
-  if(qIdx + 1 === endPoint) {
+  if(qIdx === endPoint) {
     goResult();
     return;
   }
