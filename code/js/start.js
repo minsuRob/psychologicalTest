@@ -3,7 +3,19 @@ const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 
 const endPoint = 12;
-const select = [];
+const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+// function setResult() {
+//   let point = calResult();
+//   const resultName = document.
+// }
+
+function calResult() {
+  console.log(select);
+  var result = select.indexOf(Math.max(...select));
+  console.log(result);
+  return result;
+}
 
 function goResult(){
   qna.style.WebkitAnimation = "fadeOut 1s";
@@ -38,7 +50,11 @@ function addAnswer(answerText, qIdx, idx){
       children[i].style.animation = "fadeOut 0.5s";
     }
     setTimeout(() => {
-      select[qIdx]= idx;
+      var target = qnaList[qIdx].a[idx].type;
+      for(let i = 0; i < target.length; i++){
+        select[target[i]] += 1;
+      }
+
       for(let i = 0; i < children.length; i++){
         children[i].style.display = 'none';
       }
